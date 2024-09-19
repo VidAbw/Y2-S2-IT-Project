@@ -1,127 +1,131 @@
-const { hashPassword, comparePassword } = require('../helpers/authHelper')
-const userModel =require('../models/userModel')
-const jwt=require('jsonwebtoken');
+const { hashPassword, comparePassword } = require('../helpers/authHelper');
+const userModel = require('../models/userModel');
+const jwt = require('jsonwebtoken');
 
-
-const registerController=async(req,res)=>{
+// Register Controller
+const registerController = async (req, res) => {
     try {
-        const {name,email,password,phone,address}=req.body
+        const { firstName, lastName, email, password, phone, address } = req.body;
 
-        //validations
-        if(!name){
-            return res.send({error:'Name is Required'})
+        // Validations
+        if (!firstName) {
+            return res.send({ message: 'First Name is Required' });
         }
-        if(!email){
-            return res.send({error:'Email is Required'})
+        if (!lastName) {
+            return res.send({ message: 'Last Name is Required' });
         }
-        if(!password){
-            return res.send({error:'Password is Required'})
+        if (!email) {
+            return res.send({ message: 'Email is Required' });
         }
-        if(!phone){
-            return res.send({error:'Phone is Required'})
+        if (!password) {
+            return res.send({ message: 'Password is Required' });
         }
-        if(!address){
-            return res.send({error:'Address is Required'})
+        if (!phone) {
+            return res.send({ message: 'Phone is Required' });
+        }
+        if (!address) {
+            return res.send({ message: 'Address is Required' });
         }
 
-        //check users
-        const existingUser=await userModel.findOne({email})
+        // Check if user already exists
+        const existingUser = await userModel.findOne({ email });
 
-        //exisiting users
-        if(existingUser){
+        if (existingUser) {
             return res.status(200).send({
-                success:true,
-                message:'Already Registered please login'
-            })
+                success: false,
+                message: 'Already Registered, please login',
+            });
         }
 
-        //register user
-        const hashedPassword=await hashPassword(password)
+        // Register new user
+        const hashedPassword = await hashPassword(password);
 
-        //save
-        const registeredUser=await new userModel({name,email,phone,address,password:hashedPassword}).save()
+        // Save user
+        const registeredUser = await new userModel({
+            firstName, 
+            lastName,
+            email,
+            phone,
+            address,
+            password: hashedPassword,
+        }).save();
 
         res.status(201).send({
-            success:true,
-            message:'User registered Successfully',
-            registeredUser
+            success: true,
+            message: 'User registered successfully',
+            registeredUser,
+        });
 
-        })
-
-
-
-
-    } catch (error) {
-        console.log(error)
+    } catch (error) { 
+        console.log(error);
         res.status(500).send({
-            success:false,
-            message:'Error in Registation',
-            error
-
-        })
+            success: false,
+            message: 'Error in Registration',
+            error: error.message, 
+        });
     }
+};
 
-}
-
-//POST LOGIN
-
-const loginController=async(req,res)=>{
-
+// Login Controller
+const loginController = async (req, res) => {
     try {
-        const {email,password}=req.body
+        const { email, password } = req.body;
 
-        if(!email||!password){
+        if (!email || !password) {
             return res.status(404).send({
-                success:false,
-                message:'Invalid Email OR Password'
-
-            })
-        }
-        //check user
-        const user=await userModel.findOne({email})
-        if(!user){
-            return res.status(404).send({
-                success:false,
-                message:'Error in login',
-                error
-
-            })
+                success: false,
+                message: 'Invalid Email or Password',
+            });
         }
 
-        const match = await comparePassword(password,user.password)
-        if(!match){
+        // Check if user exists
+        const user = await userModel.findOne({ email });
+
+        if (!user) {
+            return res.status(404).send({
+                success: false,
+                message: 'User not found',
+            });
+        }
+
+        const match = await comparePassword(password, user.password);
+        if (!match) {
             return res.status(200).send({
-                success:false,
-                message:'Invalid Password'
-            })
+                success: false,
+                message: 'Invalid Password',
+            });
         }
 
-        const token=await jwt.sign({_id:user._id},process.env.jwt_Secret,{
-            expiresIn:"7d"
-        })
+        // Generate JWT token
+        const token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+            expiresIn: "7d",
+        });
 
         res.status(200).send({
-            success:true,
-            message:'login successfully',
-            user:{
-                name:user.name,
-                email:user.email,
-                phone:user.phone,
-                address:user.address,
+            success: true,
+            message: 'Login successful',
+            user: {
+                firstName: user.firstName, 
+                lastName: user.lastName,
+                email: user.email,
+                phone: user.phone,
+                address: user.address,
             },
-            token
+            token,
+        });
 
-        })
-        
-    } catch (error) {
-        console.log(error)
+    } catch (error) { 
+        console.log(error);
         res.status(500).send({
-        success:false,
-        message:'Error In Login',
-        error
-    })
+            success: false,
+            message: 'Error in Login',
+            error: error.message,
+        });
     }
-}
+};
 
-module.exports=registerController
-module.exports=loginController
+// export both controllers
+module.exports = {
+    registerController,
+    loginController
+};
