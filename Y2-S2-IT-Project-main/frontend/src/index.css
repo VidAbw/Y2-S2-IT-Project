@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+.navbar {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+  color: black;
+  background-color: rgba(87, 86, 86, 0.24) !important;
+  text-transform: uppercase;
+  box-shadow: 0 8px 6px -6px #da6a02;
+  --webkit-box-shadow: 0 8px 6px -6px #da6a02;
+  border-bottom: 0px solid #da6a02 !important;
+}
+
+.nav-link {
+  font-weight: 300 !important;
+}
+
+.active {
+  border-bottom: 1px solid #da6a02;
+}
+
+.navbar-brand img.navbar-logo {
+  width: 150px !important; /* Force the size */
+  height: 100px !important;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-family: "PT Sans", sans-serif;
+  letter-spacing: 3px;
+  margin-left: 15px;
+}
+
+/*font-family: "Poppins", sans-serif;*/
+/*font-family: "Montserrat", sans-serif;*/ /*navbar font*/
+/*font-family: "PT Sans", sans-serif;*/ /*WELLNESS KICHEN font*/
+
+.navbar-logo {
+
+  border-radius: 150px;
+  margin-left: 20px;
+
+}
