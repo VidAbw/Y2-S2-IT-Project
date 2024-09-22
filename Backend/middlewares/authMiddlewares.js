@@ -1,3 +1,1 @@
-const jwt =require('jsonwebtoken')
-
-//Protected Routes token base
+const jwt = require("jsonwebtoken");
