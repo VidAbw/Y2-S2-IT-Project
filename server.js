@@ -1,5 +1,5 @@
 const express = require('express');
-const cors = require('cors'); // Import CORS
+const cors = require('cors'); 
 const connectDB = require('./config/db');
 const recipeRoutes = require('./routes/recipeRoutes');
 const authRoutes = require('./routes/authRoutes');
