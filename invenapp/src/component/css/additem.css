@@ -1,0 +1,198 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+.add-data {
+    position: absolute;
+    top: 80%;
+    left: 55%;
+    width: 60%;
+    height: auto;
+    padding: 50px;
+    background-position: center;
+    background-size: cover;
+    transform: translate(-50%, -50%);
+}
+
+.add-data::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../img/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(220px);
+    z-index: 0;
+}
+
+.add-data::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(221, 221, 221, 0.185);
+    z-index: 1;
+    border-radius: 20px;
+    box-shadow: 0 6px 25px rgba(48, 48, 48, 0.3);
+}
+
+.add-data .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: white;
+}
+
+form label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+form .item-input {
+    width: 98%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+form .item-input:focus {
+    border-color: #db7d30;
+    box-shadow: 0 0 5px #8f09489c;
+}
+
+button.btn {
+    width: 45%;
+    padding: 12px;
+    margin: 10px;
+    margin-left: 3%;
+}
+
+.error-msg {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    top: 540px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.error-msg .error-btn {
+    background-color: rgb(252, 239, 239);
+    border-radius: 5px;
+    border-left: red solid 2px;
+    border-right: red solid 2px;
+    width: 60%;
+    align-items: center;
+    text-align: center;
+    font-size: small;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial;
+}
+
+.error-msg .error-btn:hover {
+    background-color: fixed;
+    color: inherit;
+    cursor: default;
+    box-shadow: none;
+    border-color: inherit;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+@media (max-width: 768px) {
+    form .col-sm-6 {
+        width: 100%;
+        display: block;
+    }
+
+    .col-sm-6 {
+        width: 100%;
+    }
+
+    button.btn {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        margin-left: 0%;
+    }
+}
+
+@media (max-width: 1500px) {
+    .add-data {
+        width: 65%;
+        padding: 20px;
+        top: 90%;
+        margin-left: 12%;
+    }
+
+    .item-input {
+        max-width: 97%;
+    }
+
+    .breadcrumb {
+        flex-direction: column;
+    }
+
+    .error-msg .error-btn {
+        width: 100%;
+        font-size: small;
+    }
+
+    .error-msg {
+        top: 550px;
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 870px) {
+    #content {
+        margin-left: 0;
+    }
+
+    #sidebar {
+        display: none;
+    }
+
+    .add-data {
+        width: 80%;
+        left: 40%;
+        top: 98%;
+    }
+
+    .head,
+    .left h1 {
+        text-align: center;
+    }
+
+    form .item-input {
+        margin-bottom: 0px;
+        font-size: small;
+    }
+
+    .item-input {
+        max-width: 95%;
+    }
+
+    .breadcrumb {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,415 @@
+input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #4b2005;
+  padding: 5px 20px;
+  border-radius: 10px;
+  color: #f8bf9b;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+
+
+
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: #f8bf9b;
+  color: #4b2005;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Custom styling for file input button */
+.btn-secondary {
+  display: inline-block;
+  background-color: #F97211;
+  color: white;
+  border: none;
+  padding: 7px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 97%;
+
+}
+
+/* Add hover effect for file input button */
+.btn-secondary:hover {
+  background-color: #f8bf9b;
+  color: #4b2005;
+}
+
+/* Adjust the file input when it's active (clicked) */
+.btn-secondary:active {
+  background-color: #7a3808;
+  color: #f8bf9b;
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: Disable button styling */
+.btn-secondary:disabled {
+  background-color: #d6d8db;
+  cursor: not-allowed;
+}
+
+.backup-btn {
+  width: 100%;
+  padding: 12px 20px;
+}
+
+
+
+
+.table-data-e {
+  position: relative;
+
+  margin-left: 10%;
+  margin-right: 10%;
+
+
+}
+
+.table-data-e::before {
+  content: "";
+  /* Creates a pseudo-element */
+  position: absolute;
+  /* Positioning it absolutely */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../img/bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  background-position: center;
+  filter: blur(350px);
+  z-index: 1;
+
+}
+
+.table-data-e>* {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  background-color: rgba(221, 221, 221, 0.185);
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(145, 145, 145, 0.3);
+}
+
+
+
+.App-header {
+  background-color: #F97211;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.App-body {
+  display: flex;
+  height: 100vh;
+}
+
+.Sidebar {
+  width: 200px;
+  background-color: white;
+  padding: 20px;
+}
+
+.Sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.Sidebar li {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.Main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.Widgets {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.Widget {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 45%;
+}
+
+.invent-table {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 20vh;
+
+}
+
+.Inventory-table {
+  width: 100%;
+
+  margin-bottom: 20px;
+
+}
+
+.Inventory-table th,
+.Inventory-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #dddddd;
+}
+
+.Inventory-table th {
+  background-color: #F97211;
+  color: white;
+  padding: 10px;
+}
+
+
+
+.Action-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* General button styling */
+button {
+  background-color: #F97211;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+/* Hover effect */
+button:hover {
+  background-color: #f8bf9b;
+  color: #4b2005;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Active button state (when clicked) */
+button:active {
+  background-color: #df7431;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Disabled button state */
+button:disabled {
+  background-color: #f8bf9b;
+  color: #4b2005;
+  cursor: not-allowed;
+}
+
+/* Small button size */
+button.btn-sm {
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+/* Large button size */
+button.btn-lg {
+  padding: 15px 30px;
+  font-size: 18px;
+}
+
+/* Full-width button */
+button.btn-full-width {
+  width: 100%;
+}
+
+
+
+.button_clz button {
+  margin-right: 10px;
+}
+
+/* General input field styling */
+input[type="text"] {
+  width: 450px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+/* Placeholder text style */
+input[type="text"]::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* Input field on hover */
+input[type="text"]:hover {
+  border-color: #f8b289;
+}
+
+/* Input field on focus */
+input[type="text"]:focus {
+  border-color: #F97211;
+  /* Orange highlight on focus */
+  box-shadow: 0 0 5px rgba(249, 114, 17, 0.4);
+}
+
+/* Smaller input field (optional) */
+input[type="text"].input-sm {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* Larger input field (optional) */
+input[type="text"].input-lg {
+  padding: 12px 20px;
+  font-size: 18px;
+}
+
+/* Full-width input (optional) */
+input[type="text"].input-full-width {
+  width: 100%;
+}
+
+
+/* Container for header */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+
+
+
+
+/* Chevron icon between breadcrumb items */
+.bx-chevron-right {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #999;
+}
+
+/* Right section (search bar) */
+.header-container .right {
+  display: flex;
+  align-items: center;
+}
+
+/* Search input field */
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.head h3 {
+  color: #7e7b79;
+}
+
+@media only screen and (max-width: 768px) {
+  .invent-table {
+    overflow-x: auto;
+    min-height: auto;
+
+
+
+  }
+
+  .Inventory-table {
+    width: 100%;
+    display: block;
+    justify-content: center;
+
+    min-height: 20vh;
+
+
+
+  }
+
+  .Inventory-table th,
+  .Inventory-table td {
+    padding: 2px;
+
+    white-space: nowrap;
+    /* Prevent text wrapping */
+    font-size: small;
+  }
+
+  .table-data-e {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0px;
+  }
+
+  /* Buttons in table */
+  .Action-buttons {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  button {
+    margin-bottom: 10px;
+    width: 100%;
+    /* Make buttons full width */
+
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  /* Stack elements vertically in header-container */
+  .header-container {
+    flex-direction: column;
+    /* Stack items */
+    align-items: normal;
+    /* Align to the start */
+  }
+
+
+
+  .hide-on-small {
+
+    visibility: hidden;
+  }
+
+  /* Style for the search container */
+  .search-container {
+    width: 100%;
+    /* Make search bar full width */
+    margin-top: 10px;
+    /* Add some space above the search bar */
+  }
+
+  /* Ensure the search input takes the full width */
+  input[type="text"] {
+    width: 100%;
+    /* Full width for input */
+  }
+
+  /* Adjust other elements as needed */
+  .breadcrumb {
+    margin-bottom: 10px;
+    /* Add space below the breadcrumb */
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .table-data-e {
+    margin: 0;
+  }
+}

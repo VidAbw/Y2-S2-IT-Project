@@ -1,0 +1,785 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+}
+
+
+.table-data-c {
+    position: relative;
+    margin-left: 5%;
+    margin-right: 10%;
+
+
+}
+
+.table-data-c::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../img/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: blur(190px);
+    z-index: 1;
+
+}
+
+.table-data-c>* {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    background-color: rgba(221, 221, 221, 0.185);
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(145, 145, 145, 0.3);
+
+}
+
+
+.charts-container {
+    display: flex;
+    /* Enables flexbox for layout */
+    margin-top: 30px;
+    align-items: flex-start;
+    /* Aligns items to the start of the container */
+    margin-bottom: 20px;
+    /* Adds space below the charts */
+    margin-left: 45px;
+}
+
+.chart-Line {
+    width: 350px;
+    /* Fixed width for each chart */
+    /* Optional: Add a max width for responsiveness */
+    height: 380px;
+    max-width: 100%;
+    /* Ensures charts are responsive */
+    background-color: white;
+   padding-left: 60px;
+   padding-right: 60px;
+   padding-top: 35px;
+   padding-bottom: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(145, 145, 145, 0.3);
+}
+
+.chart-Pie {
+    width: 350px;
+    /* Fixed width for each chart */
+    padding: 27px 10%;
+    height: 390px;
+
+    background-color: white;
+    border-radius: 20px;
+    margin-left: 2%;
+    box-shadow: 0 10px 25px rgba(145, 145, 145, 0.3);
+}
+
+/* Optional: Responsive styles */
+@media (max-width: 600px) {
+    .charts-container {
+        flex-direction: column;
+        /* Stacks charts vertically on small screens */
+        align-items: center;
+        /* Centers charts */
+    }
+
+    .chart-Line,
+    .chart-Pie {
+        width: 100%;
+        /* Full width for charts on smaller screens */
+        margin-bottom: 20px;
+        /* Space between stacked charts */
+    }
+}
+
+
+
+
+#sidebar {
+    width: 240px;
+    height: 100vh;
+    background-color: #fff;
+    padding-top: 20px;
+    position: fixed;
+    border-right: 2px solid #ddd;
+}
+
+.brandLogo {
+    width: 100px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.brand {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    color: #333;
+}
+
+.side-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.side-menu li {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.side-menu li a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.2s ease;
+}
+
+.side-menu li a i {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+.side-menu li a:hover {
+    background-color: #ff7300;
+    color: #fff;
+}
+
+.side-menu li a.active {
+    background-color: #ff7300;
+    color: #fff;
+}
+
+#content {
+    margin-left: 240px;
+    padding: 20px;
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+.head-title {
+    margin-bottom: 20px;
+}
+
+.head-title h1 {
+    color: #ff7300;
+    font-size: 36px;
+}
+
+.breadcrumb {
+    list-style: none;
+    padding-left: 30px;
+
+    margin-bottom: 20px;
+
+}
+
+.breadcrumb li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.breadcrumb li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.breadcrumb li a.active {
+    color: #ff7300;
+}
+
+.box-info {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+
+}
+
+.box-info li {
+    background-color: #ff7300;
+    color: #fff;
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgb(238, 176, 125);
+
+}
+
+.box-info li i {
+    font-size: 40px;
+    margin-bottom: 10px;
+
+}
+
+.box-info li .text h3 {
+    font-size: 28px;
+    margin: 10px 0;
+}
+
+.table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.table thead {
+    background-color: #ff7300;
+    color: #fff;
+}
+
+.table th,
+.table td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    font-size: 18px;
+}
+
+.table td {
+    font-size: 16px;
+}
+
+.table-actions button {
+    background-color: #ff7300;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.table-actions button:hover {
+    background-color: #ff7300;
+}
+
+.add-btn,
+.update-btn,
+.delete-btn {
+    background-color: #ff7300;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.add-btn:hover,
+.update-btn:hover,
+.delete-btn:hover {
+    background-color: #ff7300;
+}
+
+/*Inventory table css part*/
+.item-table-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.table thead {
+    background-color: #ff7300;
+    color: #fff;
+}
+
+.table th,
+.table td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.update-btn,
+.delete-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.update-btn {
+    background-color: #ff7300;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #ff3300;
+    color: white;
+}
+
+.update-btn:hover {
+    background-color: #ff7300;
+}
+
+.delete-btn:hover {
+    background-color: #ff7300;
+}
+
+.action-buttons {
+    text-align: right;
+}
+
+.add-btn {
+    background-color: #ff7300;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: #ff7300;
+}
+
+.update-btn,
+.delete-btn {
+    background-color: #ff7300;
+    color: white;
+}
+
+.action-buttons button {
+    margin-left: 10px;
+}
+
+.action-buttons .update-btn:hover,
+.action-buttons .delete-btn:hover {
+    background-color: #ff7300;
+}
+
+
+.icon-wrapper {
+    position: relative;
+    /* Enable z-index manipulation */
+    z-index: 10;
+    /* Bring the icon wrapper to the front */
+    display: inline-block;
+    /* Keep it inline with text */
+    width: 30px;
+    /* Adjust width to fit the icon */
+    height: 30px;
+    margin-left: 20px;
+}
+
+.blinking-icon {
+    color: red;
+    animation: blink 1.5s infinite;
+    font-size: 20px;
+    position: relative;
+    z-index: 11;
+}
+
+/* Circle wave effect */
+.icon-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 9;
+    animation: circle-wave 2s infinite ease-out;
+}
+
+/* Blinking animation */
+@keyframes blink {
+
+    0%,
+    100% {
+        color: red;
+        stroke: white;
+        stroke-width: 2px;
+    }
+
+    50% {
+        color: white;
+        stroke: red;
+        stroke-width: 2px;
+    }
+}
+
+/* Circle wave animation */
+@keyframes circle-wave {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+
+
+
+
+.icon-wrapper-b {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+}
+
+.blinking-icon-b {
+    color: rgb(252, 133, 133);
+    animation: blink 1.5s infinite;
+    font-size: 20px;
+    position: relative;
+    z-index: 11;
+}
+
+/* Circle wave effect */
+.icon-wrapper-b::before {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(58, 3, 3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 9;
+    animation: circle-wave 2s infinite ease-out;
+}
+
+/* Blinking animation */
+@keyframes blink {
+
+    0%,
+    100% {
+        color: red;
+        stroke: white;
+        stroke-width: 2px;
+    }
+
+    50% {
+        color: white;
+        stroke: red;
+        stroke-width: 2px;
+    }
+}
+
+/* Circle wave animation */
+@keyframes circle-wave {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+
+.notification-roler {
+    display: flex;
+
+    margin-bottom: 20px;
+    gap: 15px;
+    text-align: center;
+    justify-content: center;
+
+}
+
+
+.recent-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+
+.recent-item table {
+    width: 100%;
+    border-collapse: collapse;
+
+
+}
+
+.recent-item th {
+    padding: 10px;
+    border: 1px solid #f8a6a6;
+    text-align: left;
+    width: 150px;
+    box-sizing: border-box;
+
+}
+
+.recent-item td {
+    padding: 10px;
+    border: 1px solid #f8a6a6;
+    text-align: left;
+    width: 150px;
+    box-sizing: border-box;
+
+
+}
+
+.recent-item thead {
+    background-color: #ffffff;
+
+
+}
+
+.recentRoling-box {
+    max-height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.recentRoling-content {
+    animation: scroll 100s linear infinite;
+    overflow-y: auto;
+    height: 100%;
+
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+
+.Low-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.Low-item table {
+    width: 100%;
+    border-collapse: collapse;
+
+
+
+}
+
+.Low-item th {
+    padding: 10px;
+    border: 1px solid #f8a6a6;
+    text-align: left;
+    width: 150px;
+    box-sizing: border-box;
+}
+
+.Low-item td {
+    padding: 10px;
+    border: 1px solid #f8a6a6;
+    text-align: left;
+    width: 150px;
+    box-sizing: border-box;
+
+}
+
+.Low-item thead {
+    background-color: #ffffff;
+
+}
+
+.LowRoling-box {
+    max-height: 300px;
+    overflow: hidden;
+    position: relative;
+
+
+}
+
+.LowRoling-content {
+    animation: scroll 100s linear infinite;
+    overflow-y: auto;
+    height: 100%;
+
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+
+
+@media (max-width: 768px) {
+
+    .table-data-c {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+    }
+
+    .box-info {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .box-info li {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .charts-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin-left: 0;
+    }
+
+    .chart-Line {
+        justify-content: center;
+        width: 100%;
+        padding: 5px;
+    }
+
+    .chart-Pie {
+        justify-content: center;
+        width: 75%;
+        height: 50%;
+        padding: 5px;
+    }
+
+    .notification-roler {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin-left: 0;
+    }
+
+    .recent-items {
+        padding: 0;
+        margin: 0;
+    }
+
+    .recent-items thead {
+        padding: 0;
+        margin: 0;
+    }
+
+    .recent-items th,
+    td {
+        padding: 0;
+        font-size: small;
+    }
+
+    .table th,
+    .table td {
+        padding: 15px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+}
+
+@media (max-width: 1400px) {
+
+    .table-data-c {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+    }
+
+
+
+    .box-info li {
+        justify-content: center;
+        width: 100%;
+    }
+
+
+
+    .chart-Line {
+        justify-content: center;
+        width: 48%;
+        padding: 5px;
+        margin: 0;
+        height: 50%;
+        padding-bottom: 240px;
+
+    }
+
+    .chart-Pie {
+        justify-content: center;
+        width: 48%;
+        height: 50%;
+        padding: 5px;
+    }
+
+
+    .recent-items {
+        padding: 0;
+        margin: 0;
+    }
+
+    .recent-items thead {
+        padding: 0;
+        margin: 0;
+    }
+
+    .recent-items th,
+    td {
+        padding: 0;
+        font-size: small;
+    }
+
+    .table th,
+    .table td {
+        padding: 15px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+}

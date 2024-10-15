@@ -1,0 +1,111 @@
+/* Base styles */
+.table-data-d {
+    position: relative;
+
+}
+
+.table-data-d::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../img/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: blur(350px);
+    z-index: 1;
+}
+
+.table-data-d>* {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    background-color: rgba(221, 221, 221, 0.185);
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(145, 145, 145, 0.3);
+}
+
+.report-table {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 2%;
+
+}
+
+.report-table th,
+.report-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.report-table th {
+    background-color: #F97211;
+    color: white;
+    padding: 10px;
+}
+
+.left-report h1 {
+
+    text-align: center;
+}
+
+/* MEDIA QUERIES */
+
+/* For screens smaller than 1024px (tablets) */
+@media (max-width: 1024px) {
+
+
+    .report-table th,
+    .report-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .report-table th {
+        padding: 8px;
+    }
+}
+
+/* For screens smaller than 768px (small tablets and large phones) */
+@media (max-width: 768px) {
+
+
+    .report-table th,
+    .report-table td {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
+
+/* For screens smaller than 576px (phones) */
+@media (max-width: 576px) {
+    .table-data-d {
+        padding: 10px;
+    }
+
+    /* Responsive table with horizontal scrolling */
+    .report-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        /* Allows horizontal scrolling */
+        white-space: nowrap;
+        /* Prevents wrapping of table content */
+    }
+
+    .report-table th,
+    .report-table td {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    /* Ensure the table header is still visible */
+    .report-table th {
+        background-color: #F97211;
+        color: white;
+    }
+}
