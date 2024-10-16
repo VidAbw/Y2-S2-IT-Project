@@ -119,7 +119,7 @@ function App() {
             </Wrapper>
           }
         />
-        {/* Add the missing routes here */}
+        
         <Route
           path="/privacy-policy"
           element={
