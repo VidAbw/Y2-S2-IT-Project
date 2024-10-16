@@ -40,7 +40,7 @@ const Footer = () => {
     <FooterContainer>
       <FooterText>© 2024 Wellness Kitchen. All rights reserved.</FooterText>
       <FooterLinks>
-        <FooterLink href="/pages/PrivacyPolicy">Privacy Policy</FooterLink>
+        <FooterLink href="/PrivacyPolicy">Privacy Policy</FooterLink>
         <FooterLink href="/terms-of-service">Terms of Service</FooterLink>
         <FooterLink href="/contact-us">Contact Us</FooterLink>
       </FooterLinks>

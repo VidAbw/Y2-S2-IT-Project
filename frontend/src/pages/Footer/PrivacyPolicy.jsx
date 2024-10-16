@@ -25,6 +25,7 @@ const Container = styled.div`
   padding: 40px;
   max-width: 800px;
   margin: 0 auto;
+  color: #222
 `;
 
 const Title = styled.h1`
