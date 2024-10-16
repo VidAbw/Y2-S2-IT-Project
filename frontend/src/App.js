@@ -11,9 +11,9 @@ import UserItems from "./pages/UserItems";
 import MyCart from "./pages/MyCart";
 import CheckoutView from "./pages/CheckoutView";
 import Footer from "./components/Common/Footer";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfService from "./pages/TermsOfService";
-import ContactUs from "./pages/ContactUs";
+import PrivacyPolicy from "./pages/Footer/PrivacyPolicy";
+import TermsOfService from "./pages/Footer/TermsOfService";
+import ContactUs from "./pages/Footer/ContactUs";
 
 const Wrapper = styled.div`
   width: auto;
