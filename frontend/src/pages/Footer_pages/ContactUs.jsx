@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
 
   const handleChange = (e) => {
@@ -15,7 +15,7 @@ const ContactUs = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add form submission logic here (e.g., send data to server)
-    alert('Message sent!');
+    alert("Message sent!");
   };
 
   return (
@@ -24,15 +24,32 @@ const ContactUs = () => {
       <Form onSubmit={handleSubmit}>
         <Label>
           Name:
-          <Input type="text" name="name" value={formData.name} onChange={handleChange} required />
+          <Input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
         </Label>
         <Label>
           Email:
-          <Input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <Input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
         </Label>
         <Label>
           Message:
-          <Textarea name="message" value={formData.message} onChange={handleChange} required />
+          <Textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+          />
         </Label>
         <Button type="submit">Send Message</Button>
       </Form>
@@ -48,7 +65,7 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-size: 32px;
-  color: #333;
+  color: #fff;
 `;
 
 const Form = styled.form`
@@ -59,7 +76,7 @@ const Form = styled.form`
 
 const Label = styled.label`
   font-size: 16px;
-  color: #555;
+  color: #fff;
 `;
 
 const Input = styled.input`
@@ -83,15 +100,14 @@ const Button = styled.button`
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
-  background-color: #28a745;
+  background-color: #ff7f50;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 
   &:hover {
-    background-color: #218838;
+    background-color: orange !important;
   }
 `;
 
 export default ContactUs;
-

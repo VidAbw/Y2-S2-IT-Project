@@ -37,7 +37,7 @@ const Title = styled.h1`
 
 const Content = styled.div`
   font-size: 16px;
-  color: #555;
+  color: #fff;
   line-height: 1.6;
 `;
 

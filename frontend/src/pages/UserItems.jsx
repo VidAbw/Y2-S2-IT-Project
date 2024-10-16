@@ -10,6 +10,7 @@ import {
   Image,
   Slider,
   Input,
+  Checkbox,
 } from "antd";
 import styled from "styled-components";
 import { foodItemService } from "../services/food.item.service";
@@ -19,35 +20,6 @@ const ItemGrid = styled.div`
   padding: 40px;
   background-color: #ffae42;
   min-height: 100vh;
-
-  .ant-card {
-    margin-bottom: 30px;
-    border-radius: 15px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-
-    &:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-  }
-
-  .ant-card-cover img {
-    height: 220px;
-    object-fit: cover;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-  }
-
-  .ant-card-meta-title {
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-
-  .ant-card-meta-description {
-    color: #333;
-    font-weight: 600;
-  }
 `;
 
 const StyledButton = styled(Button)`
@@ -87,13 +59,10 @@ const SearchInput = styled(Input)`
   box-shadow: #fff;
   width: 100%;
   height: 50px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
 
   &:focus {
     border-color: #fff;
-    box-shadow: #fff;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   }
 `;
 
@@ -114,42 +83,66 @@ const PriceSlider = styled(Slider)`
   }
 `;
 
+const TagFilterContainer = styled.div`
+  margin-bottom: 30px;
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  color: #fff;
+`;
+
+const TagCheckbox = styled(Checkbox)`
+  margin: 0 10px;
+`;
+
 const UserItems = () => {
   const [foodItems, setFoodItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null); // For modal
+  const [selectedItem, setSelectedItem] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [priceRange, setPriceRange] = useState([0, 1000]); // Default price range
-  const [searchTerm, setSearchTerm] = useState(""); // For search
+  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedTags, setSelectedTags] = useState([]); // New state for selected tags
 
   useEffect(() => {
     foodItemService.getAllFoodItems().then((res) => {
-      setFoodItems(res); // Assuming res is the array of food items
-      setFilteredItems(res); // Initially, show all food items
+      setFoodItems(res);
+      setFilteredItems(res);
     });
   }, []);
 
-  // Filter items by price range
+  // Handle price range change
   const handlePriceRangeChange = (value) => {
     setPriceRange(value);
-    filterItems(searchTerm, value);
+    filterItems(searchTerm, value, selectedTags);
   };
 
-  // Search items
+  // Handle search input change
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-    filterItems(term, priceRange);
+    filterItems(term, priceRange, selectedTags);
   };
 
-  // Filter items based on search term and price range
-  const filterItems = (term, priceRange) => {
-    const filtered = foodItems.filter(
-      (item) =>
-        item.name.toLowerCase().includes(term.toLowerCase()) &&
-        item.price >= priceRange[0] &&
-        item.price <= priceRange[1]
-    );
+  // Handle tag selection change
+  const handleTagChange = (checkedValues) => {
+    setSelectedTags(checkedValues);
+    filterItems(searchTerm, priceRange, checkedValues);
+  };
+
+  // Filter items based on search term, price range, and selected tags
+  const filterItems = (term, priceRange, tags) => {
+    const filtered = foodItems.filter((item) => {
+      const matchesSearch = item.name
+        .toLowerCase()
+        .includes(term.toLowerCase());
+      const matchesPrice =
+        item.price >= priceRange[0] && item.price <= priceRange[1];
+      const matchesTags = tags.length
+        ? tags.some((tag) => item.tags.includes(tag))
+        : true; // Check for tags
+      return matchesSearch && matchesPrice && matchesTags;
+    });
     setFilteredItems(filtered);
   };
 
@@ -168,9 +161,7 @@ const UserItems = () => {
   // Add item to cart
   const addToCart = (item) => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    // Check if item already exists in the cart
-    const exists = cart?.find((cartItem) => cartItem._id === item._id);
+    const exists = cart.find((cartItem) => cartItem._id === item._id);
 
     if (exists) {
       message.error("Item is already in the cart");
@@ -181,6 +172,11 @@ const UserItems = () => {
     }
   };
 
+  // Extract unique tags from food items
+  const uniqueTags = Array.from(
+    new Set(foodItems.flatMap((item) => item.tags))
+  );
+
   return (
     <ItemGrid>
       <SearchInput
@@ -190,13 +186,14 @@ const UserItems = () => {
         onChange={handleSearchChange}
         allowClear
       />
+
       <h2 style={{ color: "#fff", fontSize: "15px" }}>Price Range</h2>
       <PriceSlider
-        style={{ marginBottom: "60px" }}
+        style={{ marginBottom: "50px" }}
         range
         value={priceRange}
         min={0}
-        max={3000} // Adjust max value as necessary
+        max={3000}
         onChange={handlePriceRangeChange}
         step={10}
         marks={{
@@ -210,6 +207,37 @@ const UserItems = () => {
         }}
       />
 
+      {/* Tag Filter */}
+      <TagFilterContainer>
+        <h2
+          style={{
+            color: "#fff",
+            fontSize: "15px",
+            marginRight: "20px",
+          }}
+        >
+          Health Conditions
+        </h2>
+        <Checkbox.Group
+          options={uniqueTags.map((tag) => ({ label: tag, value: tag }))}
+          onChange={handleTagChange}
+          style={{
+            backgroundColor: "#fff",
+            borderRadius: "50px",
+            paddingLeft: "15px",
+            paddingRight: "15px",
+            alignItems: "center",
+            color: "orange",
+          }}
+        >
+          {uniqueTags.map((tag) => (
+            <TagCheckbox key={tag} value={tag}>
+              {tag}
+            </TagCheckbox>
+          ))}
+        </Checkbox.Group>
+      </TagFilterContainer>
+
       <Row gutter={[24, 24]}>
         {filteredItems.map((item) => (
           <Col key={item._id} xs={24} sm={12} md={8} lg={6}>
@@ -218,7 +246,11 @@ const UserItems = () => {
               cover={<img alt={item.name} src={item.imageUrl} />}
               onClick={() => handleItemClick(item)}
             >
-              <Card.Meta title={item.name} description={`LKR ${item.price}`} />
+              <Card.Meta
+                style={{ marginBottom: "9px" }}
+                title={item.name}
+                description={`LKR ${item.price}`}
+              />
               <Rate disabled defaultValue={item.stars} />
             </Card>
           </Col>

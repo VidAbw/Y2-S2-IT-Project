@@ -31,12 +31,12 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-size: 32px;
-  color: #333;
+  color: #fff;
 `;
 
 const Content = styled.div`
   font-size: 16px;
-  color: #555;
+  color: #fff;
   line-height: 1.6;
 `;
 
