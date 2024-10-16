@@ -41,6 +41,7 @@ const OrderSchema = new Schema(
     items: [{ type: OrderItemSchema, required: true }],
     status: { type: String, default: OrderStatus.NEW },
     userId: { type: String, required: true },
+    email: { type: String, required: true },
   },
   {
     timestamps: true,

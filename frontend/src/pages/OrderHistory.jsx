@@ -126,6 +126,12 @@ const OrderHistory = () => {
       key: "name",
     },
     {
+      title: "Email", // New column for Email
+      dataIndex: "email", // Make sure this corresponds to the email field in your orders
+      key: "email",
+      render: (text) => <Typography.Text>{text}</Typography.Text>,
+    },
+    {
       title: "Total Price",
       dataIndex: "totalPrice",
       key: "totalPrice",
@@ -201,7 +207,7 @@ const OrderHistory = () => {
         onCancel={handleModalClose}
         footer={null}
       >
-        {selectedOrder && (
+        {selectedOrder && selectedOrder.items.length > 0 ? (
           <Row gutter={16}>
             {selectedOrder.items.map((item, index) => (
               <Col span={8} key={index}>
@@ -216,6 +222,8 @@ const OrderHistory = () => {
               </Col>
             ))}
           </Row>
+        ) : (
+          <p>No items in this order.</p>
         )}
       </Modal>
     </OrderHistoryContainer>

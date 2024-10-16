@@ -9,6 +9,9 @@ const CartContainer = styled.div`
   margin-top: 80px;
   background-color: #f5f5f5;
   border-radius: 70px;
+  margin-bottom: 80px;
+  margin-left: 5px;
+  margin-right: 5px;
 
   .ant-card {
     margin-bottom: 20px;

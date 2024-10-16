@@ -39,6 +39,7 @@ const StyledButton = styled(Button)`
 const CheckoutView = () => {
   const [loading, setLoading] = useState(false);
   const [address, setAddress] = useState("");
+  const [email, setEmail] = useState(""); // State for email
   const [position, setPosition] = useState([6.9271, 79.9614]); // Default position
   const navigate = useNavigate();
   const location = useLocation();
@@ -59,6 +60,7 @@ const CheckoutView = () => {
     try {
       const orderData = {
         name: values.name,
+        email, // Include email in the order data
         address: address || values.address,
         addressLatLng: {
           lat: position[0],
@@ -109,6 +111,21 @@ const CheckoutView = () => {
             rules={[{ required: true, message: "Please enter your name" }]}
           >
             <Input placeholder="Enter your name" />
+          </Form.Item>
+
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              { required: true, message: "Please enter your email" },
+              { type: "email", message: "Please enter a valid email" },
+            ]}
+          >
+            <Input
+              placeholder="Enter your email"
+              value={email} // Use state for controlled input
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </Form.Item>
 
           <Form.Item

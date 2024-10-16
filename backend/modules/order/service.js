@@ -1,3 +1,6 @@
+const {
+  sendOrderShippedEmail,
+} = require("../../../frontend/src/services/emailService.js");
 const { OrderModel } = require("./model.js");
 
 const createOrder = async (orderData) => {
@@ -39,6 +42,13 @@ const updateOrderStatus = async (id, status) => {
     if (!updatedOrder) {
       throw new Error(`Order with id ${id} not found for update`);
     }
+
+    // Send an email if the order is marked as SHIPPED
+    if (status === "SHIPPED") {
+      const userEmail = updatedOrder.email; // Access the email directly from the order model
+      await sendOrderShippedEmail(userEmail, id);
+    }
+
     return updatedOrder;
   } catch (error) {
     throw new Error("Error updating order: " + error.message);

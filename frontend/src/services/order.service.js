@@ -39,12 +39,15 @@ class OrderService {
   // Update order status
   async updateOrderStatus(orderId, status) {
     try {
+      console.log(`Attempting to update order: ${BASE_URL}/${orderId}/status`);
+
       const response = await axios.put(`${BASE_URL}/${orderId}/status`, {
         status,
       });
       return response.data;
     } catch (error) {
       console.error("Error updating order:", error);
+
       throw error;
     }
   }
