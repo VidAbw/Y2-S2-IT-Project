@@ -11,6 +11,9 @@ import UserItems from "./pages/UserItems";
 import MyCart from "./pages/MyCart";
 import CheckoutView from "./pages/CheckoutView";
 import Footer from "./components/Common/Footer";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import ContactUs from "./pages/ContactUs";
 
 const Wrapper = styled.div`
   width: auto;
@@ -111,6 +114,43 @@ function App() {
               <Header />
               <Content>
                 <UserHome />
+              </Content>
+              <Footer />
+            </Wrapper>
+          }
+        />
+        {/* Add the missing routes here */}
+        <Route
+          path="/privacy-policy"
+          element={
+            <Wrapper>
+              <Header />
+              <Content>
+                <PrivacyPolicy />
+              </Content>
+              <Footer />
+            </Wrapper>
+          }
+        />
+        <Route
+          path="/terms-of-service"
+          element={
+            <Wrapper>
+              <Header />
+              <Content>
+                <TermsOfService />
+              </Content>
+              <Footer />
+            </Wrapper>
+          }
+        />
+        <Route
+          path="/contact-us"
+          element={
+            <Wrapper>
+              <Header />
+              <Content>
+                <ContactUs />
               </Content>
               <Footer />
             </Wrapper>
