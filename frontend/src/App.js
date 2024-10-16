@@ -10,13 +10,22 @@ import Register from "./pages/Register";
 import UserItems from "./pages/UserItems";
 import MyCart from "./pages/MyCart";
 import CheckoutView from "./pages/CheckoutView";
+import Footer from "./components/Common/Footer";
+
 const Wrapper = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 0;
 `;
+
+const Content = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
 function App() {
   return (
     <BrowserRouter>
@@ -26,7 +35,10 @@ function App() {
           element={
             <Wrapper>
               <Header />
-              <Login />
+              <Content>
+                <Login />
+              </Content>
+              <Footer />
             </Wrapper>
           }
         />
@@ -35,9 +47,11 @@ function App() {
           path="/item-manager"
           element={
             <Wrapper>
-              {" "}
               <Header />
-              <UserItems />
+              <Content>
+                <UserItems />
+              </Content>
+              <Footer />
             </Wrapper>
           }
         />
@@ -46,7 +60,10 @@ function App() {
           element={
             <Wrapper>
               <Header />
-              <OrderHistory />
+              <Content>
+                <OrderHistory />
+              </Content>
+              <Footer />
             </Wrapper>
           }
         />
@@ -55,9 +72,11 @@ function App() {
           path="/checkout"
           element={
             <Wrapper>
-              {" "}
               <Header />
-              <CheckoutView />{" "}
+              <Content>
+                <CheckoutView />
+              </Content>
+              <Footer />
             </Wrapper>
           }
         />
@@ -66,7 +85,10 @@ function App() {
           element={
             <Wrapper>
               <Header />
-              <Register />
+              <Content>
+                <Register />
+              </Content>
+              <Footer />
             </Wrapper>
           }
         />
@@ -75,7 +97,10 @@ function App() {
           element={
             <Wrapper>
               <Header />
-              <MyCart />
+              <Content>
+                <MyCart />
+              </Content>
+              <Footer />
             </Wrapper>
           }
         />
@@ -84,7 +109,10 @@ function App() {
           element={
             <Wrapper>
               <Header />
-              <UserHome />
+              <Content>
+                <UserHome />
+              </Content>
+              <Footer />
             </Wrapper>
           }
         />
