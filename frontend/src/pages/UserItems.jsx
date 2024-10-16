@@ -9,6 +9,7 @@ import {
   message,
   Image,
   Slider,
+  Input,
 } from "antd";
 import styled from "styled-components";
 import { foodItemService } from "../services/food.item.service";
@@ -18,26 +19,31 @@ const ItemGrid = styled.div`
   padding: 40px;
   background-color: #ffae42;
   min-height: 100vh;
+
   .ant-card {
     margin-bottom: 30px;
     border-radius: 15px;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
+
     &:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
   }
+
   .ant-card-cover img {
     height: 220px;
     object-fit: cover;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
   }
+
   .ant-card-meta-title {
     font-size: 1.2em;
     font-weight: bold;
   }
+
   .ant-card-meta-description {
     color: #333;
     font-weight: 600;
@@ -51,22 +57,60 @@ const StyledButton = styled(Button)`
   color: #fff;
   border-radius: 20px;
   padding: 5px 20px;
+
   &:hover {
-    background-color: #c37228;
+    background-color: #ffb74d !important;
+    color: white !important;
   }
 `;
 
 const AddToCartButton = styled(Button)`
   margin-top: 15px;
-  background-color: #45a049;
+  background-color: orange;
   border: none;
   color: #fff;
   width: 100%;
   border-radius: 20px;
   font-weight: bold;
   padding: 10px;
+
   &:hover {
-    background-color: #37893e;
+    background-color: #ffb74d !important;
+    color: white !important;
+  }
+`;
+
+const SearchInput = styled(Input)`
+  margin-bottom: 20px;
+  border-radius: 80px;
+  border-color: #fff;
+  box-shadow: #fff;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  &:focus {
+    border-color: #fff;
+    box-shadow: #fff;
+  }
+`;
+
+const PriceSlider = styled(Slider)`
+  margin-bottom: 30px;
+
+  .ant-slider-rail {
+    background-color: #fff;
+  }
+
+  .ant-slider-track {
+    background-color: #ffa500;
+  }
+
+  .ant-slider-handle {
+    border: 2px solid #ffa500;
+    background-color: #fff;
   }
 `;
 
@@ -76,6 +120,7 @@ const UserItems = () => {
   const [selectedItem, setSelectedItem] = useState(null); // For modal
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [priceRange, setPriceRange] = useState([0, 1000]); // Default price range
+  const [searchTerm, setSearchTerm] = useState(""); // For search
 
   useEffect(() => {
     foodItemService.getAllFoodItems().then((res) => {
@@ -87,8 +132,23 @@ const UserItems = () => {
   // Filter items by price range
   const handlePriceRangeChange = (value) => {
     setPriceRange(value);
+    filterItems(searchTerm, value);
+  };
+
+  // Search items
+  const handleSearchChange = (e) => {
+    const term = e.target.value;
+    setSearchTerm(term);
+    filterItems(term, priceRange);
+  };
+
+  // Filter items based on search term and price range
+  const filterItems = (term, priceRange) => {
     const filtered = foodItems.filter(
-      (item) => item.price >= value[0] && item.price <= value[1]
+      (item) =>
+        item.name.toLowerCase().includes(term.toLowerCase()) &&
+        item.price >= priceRange[0] &&
+        item.price <= priceRange[1]
     );
     setFilteredItems(filtered);
   };
@@ -110,23 +170,29 @@ const UserItems = () => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     // Check if item already exists in the cart
-    if (cart) {
-      const exists = cart?.find((cartItem) => cartItem._id === item._id);
+    const exists = cart?.find((cartItem) => cartItem._id === item._id);
 
-      if (exists) {
-        message.error("Item is already in the cart");
-      } else {
-        cart.push(item);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        message.success("Item added to the cart");
-      }
+    if (exists) {
+      message.error("Item is already in the cart");
+    } else {
+      cart.push(item);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      message.success("Item added to the cart");
     }
   };
 
   return (
     <ItemGrid>
+      <SearchInput
+        style={{ marginBottom: "5px" }}
+        placeholder="Search food items..."
+        value={searchTerm}
+        onChange={handleSearchChange}
+        allowClear
+      />
       <h2 style={{ color: "#fff", fontSize: "15px" }}>Price Range</h2>
-      <Slider
+      <PriceSlider
+        style={{ marginBottom: "60px" }}
         range
         value={priceRange}
         min={0}
@@ -142,7 +208,6 @@ const UserItems = () => {
           2500: "LKR 2500",
           3000: "LKR 3000",
         }}
-        style={{ marginBottom: "100px", color: "white" }}
       />
 
       <Row gutter={[24, 24]}>
