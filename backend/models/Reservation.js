@@ -24,7 +24,11 @@ const reservationSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  // numberOfGuests: {
+  //   type: Number,
+  //   required: true
+  // },
 });
 
 const Reservation = mongoose.model('Reservation', reservationSchema);

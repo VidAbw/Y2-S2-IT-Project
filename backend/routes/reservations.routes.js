@@ -5,14 +5,17 @@ const Reservation = require('../models/Reservation');
 // Route to make a reservation
 router.post('/', async (req, res) => {
   try {
-    const { userId, tableNumber, reservationDate, startTime, endTime, } = req.body;
+    const { userId, tableNumber, reservationDate,
+      // numberOfGuests, 
+      startTime, endTime, } = req.body;
 
     const reservation = new Reservation({
       userId,
       tableNumber,
       reservationDate,
       startTime,
-      endTime
+      endTime,
+      // numberOfGuests
     });
 
     await reservation.save();
@@ -125,11 +128,14 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { tableNumber, reservationDate, startTime, endTime } = req.body;
+    const { tableNumber, reservationDate,
+      // numberOfGuests,
+       startTime, endTime } = req.body;
 
     const conflictingReservation = await Reservation.findOne({
       _id: { $ne: id }, 
       tableNumber,
+      // numberOfGuests,
       reservationDate: new Date(reservationDate), 
       $or: [
         {
@@ -151,6 +157,7 @@ router.put('/:id', async (req, res) => {
       reservationDate,
       startTime,
       endTime
+      // ,numberOfGuests
     }, { new: true });
 
     if (!updatedReservation) {
