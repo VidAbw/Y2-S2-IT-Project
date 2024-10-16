@@ -11,9 +11,9 @@ import UserItems from "./pages/UserItems";
 import MyCart from "./pages/MyCart";
 import CheckoutView from "./pages/CheckoutView";
 import Footer from "./components/Common/Footer";
-import PrivacyPolicy from "./pages/Footer/PrivacyPolicy";
-import TermsOfService from "./pages/Footer/TermsOfService";
-import ContactUs from "./pages/Footer/ContactUs";
+import PrivacyPolicy from "./pages/Footer_pages/PrivacyPolicy.jsx";
+import TermsOfService from "./pages/Footer_pages/TermsOfService";
+import ContactUs from "./pages/Footer_pages/ContactUs";
 
 const Wrapper = styled.div`
   width: auto;
@@ -119,7 +119,7 @@ function App() {
             </Wrapper>
           }
         />
-        
+
         <Route
           path="/privacy-policy"
           element={
