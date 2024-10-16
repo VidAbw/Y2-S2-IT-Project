@@ -13,7 +13,7 @@ import CheckoutView from "./pages/CheckoutView";
 import Footer from "./components/Common/Footer";
 
 const Wrapper = styled.div`
-  width: 100vw;
+  width: auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

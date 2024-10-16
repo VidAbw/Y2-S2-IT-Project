@@ -12,16 +12,53 @@ import {
   Modal,
   Button,
 } from "antd";
-import { EyeOutlined, DeleteOutlined } from "@ant-design/icons"; // Import DeleteOutlined
+import { EyeOutlined, DeleteOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
 const { Title } = Typography;
 
 const OrderHistoryContainer = styled.div`
-  background-color: #ffae42;
+  background-color: #ffb347; /* Light background */
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
+`;
+
+const StyledTable = styled(Table)`
+  .ant-table-thead > tr > th {
+    background-color: #ffe8cc; /* Light orange header */
+    color: #444;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .ant-table-tbody > tr:hover > td {
+    background-color: #fff5e1; /* Subtle highlight on hover */
+  }
+
+  .ant-table-tbody > tr > td {
+    text-align: center;
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  .ant-btn {
+    background-color: #ff7f50; /* Coral button */
+    border: none;
+    color: white;
+  }
+
+  .ant-btn:hover {
+    background-color: #ff6347 !important; /* Tomato color on hover */
+    color: #ffff !important;
+  }
+`;
+
+const StyledTag = styled(Tag)`
+  border-radius: 12px;
+  font-size: 12px;
+  padding: 2px 8px;
 `;
 
 const OrderHistory = () => {
@@ -62,7 +99,7 @@ const OrderHistory = () => {
       title: "Are you sure you want to cancel this order?",
       onOk: async () => {
         try {
-          await orderService.updateOrderStatus(orderId, "CANCELED"); // Call the cancel order service
+          await orderService.updateOrderStatus(orderId, "CANCELED");
           setOrders((prevOrders) =>
             prevOrders.map((order) =>
               order._id === orderId ? { ...order, status: "CANCELED" } : order
@@ -81,6 +118,7 @@ const OrderHistory = () => {
       title: "Order ID",
       dataIndex: "_id",
       key: "_id",
+      render: (text) => <Typography.Text copyable>{text}</Typography.Text>,
     },
     {
       title: "Name",
@@ -109,7 +147,7 @@ const OrderHistory = () => {
         } else if (status === "SHIPPED") {
           color = "blue";
         }
-        return <Tag color={color}>{status}</Tag>;
+        return <StyledTag color={color}>{status}</StyledTag>;
       },
     },
     {
@@ -144,13 +182,13 @@ const OrderHistory = () => {
 
   return (
     <OrderHistoryContainer>
-      <Title level={2} style={{ color: "white" }}>
+      <Title level={2} style={{ color: "#fff", textAlign: "center" }}>
         Order History
       </Title>
       {loading ? (
         <Spin size="large" />
       ) : (
-        <Table
+        <StyledTable
           dataSource={orders}
           columns={columns}
           rowKey="_id"
