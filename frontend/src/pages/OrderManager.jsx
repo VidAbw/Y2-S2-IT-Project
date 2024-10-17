@@ -126,16 +126,22 @@ const OrderManager = () => {
   };
 
   const handleUpdateStatus = async (orderId, newStatus, userEmail) => {
-    try {
-      await orderService.updateOrderStatus(orderId, newStatus, userEmail);
-      message.success(`Order status updated to ${newStatus}.`);
-      setFilteredOrders(
-        filteredOrders.map((order) =>
-          order._id === orderId ? { ...order, status: newStatus } : order
-        )
-      );
-    } catch (error) {
-      message.error("Failed to update order status.");
+    const confirmShip = window.confirm(
+      "Are you sure you want to ship this order?"
+    );
+    if (confirmShip) {
+      try {
+        await orderService.updateOrderStatus(orderId, newStatus, userEmail);
+        message.success(`Order status updated to ${newStatus}.`);
+        setFilteredOrders(
+          filteredOrders.map((order) =>
+            order._id === orderId ? { ...order, status: newStatus } : order
+          )
+        );
+      } catch (error) {
+        console.error("Error updating order:", error);
+        message.error("Failed to update order status.");
+      }
     }
   };
 
@@ -155,7 +161,7 @@ const OrderManager = () => {
     {
       title: "Email",
       dataIndex: "email",
-      key: "userEmail",
+      key: "email",
       sorter: (a, b) => a.userEmail.localeCompare(b.userEmail),
     },
     {
