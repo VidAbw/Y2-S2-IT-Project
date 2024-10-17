@@ -4,7 +4,6 @@ import {
   Card,
   Row,
   Col,
-  Rate,
   Button,
   message,
   Image,
@@ -251,7 +250,6 @@ const UserItems = () => {
                 title={item.name}
                 description={`LKR ${item.price}`}
               />
-              <Rate disabled defaultValue={item.stars} />
             </Card>
           </Col>
         ))}
@@ -287,7 +285,6 @@ const UserItems = () => {
             <p>
               <strong>Tags:</strong> {selectedItem.tags.join(", ")}
             </p>
-            <Rate disabled defaultValue={selectedItem.stars} />
 
             {/* Add to Cart Button */}
             <AddToCartButton onClick={() => addToCart(selectedItem)}>

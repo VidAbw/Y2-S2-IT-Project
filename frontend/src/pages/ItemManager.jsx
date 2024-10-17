@@ -127,14 +127,13 @@ const ItemManager = () => {
     const doc = new jsPDF();
     doc.text("Foods List", 10, 10);
     doc.autoTable({
-      head: [["ID", "Name", "Price", "Cook Time", "Favorite", "Stars"]],
+      head: [["ID", "Name", "Price", "Cook Time", "Favorite"]],
       body: filteredItems.map((item) => [
         item._id,
         item.name,
         item.price,
         item.cookTime,
         item.favorite ? "Yes" : "No",
-        item.stars,
       ]),
     });
     doc.save("food-items-report.pdf");
@@ -160,11 +159,6 @@ const ItemManager = () => {
       title: "Favorite",
       dataIndex: "favorite",
       render: (text) => <Checkbox checked={text} disabled />,
-    },
-    {
-      title: "Stars",
-      dataIndex: "stars",
-      sorter: (a, b) => a.stars - b.stars,
     },
     {
       title: "Actions",
@@ -290,21 +284,6 @@ const ItemManager = () => {
                 valuePropName="checked"
               >
                 <Checkbox />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                label="Stars"
-                name="stars"
-                rules={[
-                  {
-                    required: true,
-                    type: "number",
-                    message: "Please enter a valid number of stars!",
-                  },
-                ]}
-              >
-                <InputNumber min={0} max={5} style={{ width: "100%" }} />
               </Form.Item>
             </Col>
           </Row>
