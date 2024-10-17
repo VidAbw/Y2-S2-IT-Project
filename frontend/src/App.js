@@ -160,14 +160,61 @@ function App() {
             </Wrapper>
           }
         />
-         {/* Reservation Routes */}
-         <Route path="/reservations" element={<ReservationsList />} />
-        <Route path="/reservations/update/:id" element={<UpdateReservation />} />
-        <Route path="/user/reservation" element={<UserReservation />} />
-        <Route path="/reservations/create" element={<CreateReservation />} />
+
+        {/* Wrapped Reservation Routes */}
+        <Route
+          path="/reservations"
+          element={
+            <Wrapper>
+              <Header />
+              <Content>
+                <ReservationsList />
+              </Content>
+              <Footer />
+            </Wrapper>
+          }
+        />
+        <Route
+          path="/reservations/update/:id"
+          element={
+            <Wrapper>
+              <Header />
+              <Content>
+                <UpdateReservation />
+              </Content>
+              <Footer />
+            </Wrapper>
+          }
+        />
+        <Route
+          path="/user/reservation"
+          element={
+            <Wrapper>
+              <Header />
+              <Content>
+                <UserReservation />
+              </Content>
+              <Footer />
+            </Wrapper>
+          }
+        />
+        <Route
+          path="/reservations/create"
+          element={
+            <Wrapper>
+              <Header />
+              <Content>
+                <CreateReservation />
+              </Content>
+              <Footer />
+            </Wrapper>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
 }
+
+
 
 export default App;
