@@ -14,6 +14,10 @@ import Footer from "./components/Common/Footer";
 import PrivacyPolicy from "./pages/Footer_pages/PrivacyPolicy.jsx";
 import TermsOfService from "./pages/Footer_pages/TermsOfService";
 import ContactUs from "./pages/Footer_pages/ContactUs";
+import CreateReservation from './components/Reservation/CreateReservation';
+import UserReservation from './components/Reservation/UserReservation';
+import ReservationsList from './components/Reservation/ReservationsList';
+import UpdateReservation from './components/Reservation/UpdateReservation';
 
 const Wrapper = styled.div`
   width: auto;
@@ -156,6 +160,11 @@ function App() {
             </Wrapper>
           }
         />
+         {/* Reservation Routes */}
+         <Route path="/reservations" element={<ReservationsList />} />
+        <Route path="/reservations/update/:id" element={<UpdateReservation />} />
+        <Route path="/user/reservation" element={<UserReservation />} />
+        <Route path="/reservations/create" element={<CreateReservation />} />
       </Routes>
     </BrowserRouter>
   );

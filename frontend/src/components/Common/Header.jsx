@@ -71,6 +71,15 @@ const Header = () => {
         >
           Foods
         </NavLinkStyled>
+        
+        {/* Reservation link */}
+        <NavLinkStyled
+          to="/reservations"
+          isActive={() => location.pathname === "/reservations"}
+        >
+          Reservations
+        </NavLinkStyled>
+
         {localStorage.getItem("user") && (
           <NavLinkStyled
             to="/order-history"
@@ -104,5 +113,6 @@ const Header = () => {
     </HeaderContainer>
   );
 };
+
 
 export default Header;
