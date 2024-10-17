@@ -8,7 +8,7 @@ router.post('/create', async (req, res) => {
         const employeeData = req.body;
         
         // Validate required fields before proceeding
-        const requiredFields = ['firstname', 'lastname', 'email', 'contact', 'gender', 'address', 'designation', 'basic_salary'];
+        const requiredFields = ['firstname', 'lastname', 'email', 'contact', 'gender', 'address', 'designation', 'basic_salary','experience'];
         for (const field of requiredFields) {
             if (!employeeData[field]) {
                 return res.status(400).json({ error: `${field} is required.` });

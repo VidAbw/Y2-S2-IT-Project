@@ -48,6 +48,11 @@ const employeeSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    experience: {
+        type: String,
+        required: true,
+        trim: true
+    }
 });
 
 // Pre-save hook to generate employee_id
