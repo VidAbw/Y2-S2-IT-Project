@@ -23,7 +23,7 @@ const ReservationsList = () => {
     setLoading(true);
     setErrorMessage('');
     try {
-      const response = await axios.get(`http://localhost:8070/reservations/getAll`, { params: { date } });
+      const response = await axios.get(`http://localhost:5000/reservations/getAll`, { params: { date } });
 
       if (response.data && response.data.length > 0) {
         setReservations(response.data);
@@ -99,7 +99,9 @@ const ReservationsList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8070/reservations/deleteById/${id}`);
+
+      await axios.delete(`http://localhost:5000/reservations/deleteById/${id}`);
+
       setSuccessMessage('Reservation deleted successfully!'); // Set success message
       fetchReservations(selectedDate); // Refresh the reservations list after deletion
       

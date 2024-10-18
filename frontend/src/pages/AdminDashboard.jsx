@@ -8,6 +8,9 @@ import {
 import UserManager from "../components/Admin/UserManager";
 import ItemManager from "./ItemManager";
 import OrderManager from "./OrderManager";
+import Employee from "../components/Employee/EmployeeList"
+
+
 
 const { Header, Content, Sider } = Layout;
 
@@ -45,6 +48,15 @@ const AdminDashboard = () => {
           </Menu.Item>
           <Menu.Item
             onClick={() => {
+
+              onMenuItemClicked(4);
+            }}
+            key="Employee-management"
+            icon={<UserOutlined />}
+          >Employees</Menu.Item>
+          <Menu.Item
+            onClick={() => {
+
               onMenuItemClicked(3);
             }}
             key="order-manager"
@@ -67,6 +79,8 @@ const AdminDashboard = () => {
           {activeIndex === 1 && <UserManager />}
           {activeIndex === 2 && <ItemManager />}
           {activeIndex === 3 && <OrderManager />}
+          {activeIndex === 4 && <Employee/>}
+
         </Content>
       </Layout>
     </Layout>
