@@ -25,6 +25,7 @@ import SalaryList from './components/Employee/SalaryList';
 import UpdateEmployee from './components/Employee/UpdateEmployee';
 import UpdateSalary from './components/Employee/UpdateSalary';
 
+
 const Wrapper = styled.div`
   width: auto;
   min-height: 100vh;
@@ -129,6 +130,7 @@ function App() {
             </Wrapper>
           }
         />
+
         <Route
           path="/privacy-policy"
           element={
@@ -215,7 +217,6 @@ function App() {
             </Wrapper>
           }
         />
-
         {/* Wrapped Employee Management Routes */}
         <Route
           path="/create-employee"
@@ -289,12 +290,11 @@ function App() {
             </Wrapper>
           }
         />
+
       </Routes>
     </BrowserRouter>
   );
 }
-
-
 
 
 export default App;
