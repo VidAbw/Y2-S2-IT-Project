@@ -32,6 +32,11 @@ app.use("/api/v1", rootRouter);
 app.use("/",employeeRouter);
 
 
+const blogRouter= require("./routes/blog.routes");
+app.use("/blogs",blogRouter);
+
+
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

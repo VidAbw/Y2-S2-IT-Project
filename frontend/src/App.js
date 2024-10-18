@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import AdminDashboard from "./pages/AdminDashboard";
 import Login from "./pages/Login";
 import OrderHistory from "./pages/OrderHistory";
@@ -24,6 +26,13 @@ import EmployeeList from './components/Employee/EmployeeList';
 import SalaryList from './components/Employee/SalaryList';
 import UpdateEmployee from './components/Employee/UpdateEmployee';
 import UpdateSalary from './components/Employee/UpdateSalary';
+import Sidebar from "./components/Sidebar.jsx";
+import Blogs from "./components/Blog/Blogs.jsx";
+import BlogDetail from "./components/Blog/BlogDetail.jsx";
+import BlogList from "./components/Blog/BlogList.jsx";
+import CreateBlog from "./components/Blog/CreateBlog.jsx";
+import UpdateBlog from './components/Blog/UpdateBlog';
+import HomePageSection from "./components/HomePageSection.jsx";
 
 
 const Wrapper = styled.div`
@@ -124,7 +133,7 @@ function App() {
             <Wrapper>
               <Header />
               <Content>
-                <UserHome />
+                <HomePageSection />
               </Content>
               <Footer />
             </Wrapper>
@@ -290,6 +299,35 @@ function App() {
             </Wrapper>
           }
         />
+        <Route
+          path="/blogs"
+          element={
+            <Wrapper>
+              <Header />
+              <Content>
+                <Blogs/>
+              </Content>
+              <Footer />
+            </Wrapper>
+          }
+        />
+        <Route
+          path="/blog/:id"
+          element={
+            <Wrapper>
+              <Header />
+              <Content>
+                <BlogDetail/>
+              </Content>
+              <Footer />
+            </Wrapper>
+          }
+        />
+        <Route path="/blogs-manager" element={<Sidebar component={BlogList} />} />
+        <Route path="/create-blog" element={<Sidebar component={CreateBlog} />} />
+        <Route path="/blog/update/:id" element={<Sidebar component={UpdateBlog} />} />
+
+        {/* <Route path="/home" element={<WellnessKitchen />} /> */}
 
       </Routes>
     </BrowserRouter>

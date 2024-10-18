@@ -1,0 +1,20 @@
+.sidebar {
+    min-height: 100vh; /* Full viewport height */
+    background-color: #343a40; /* Dark background */
+    padding: 1rem;
+    color: white;
+}
+  
+  .sidebar .nav-link:hover {
+    background-color: #343a40; /* Darker background on hover */
+    color: #ffffff; /* Change text color on hover */
+  }
+  
+  .bg-dark {
+    background-color: #212529 !important; /* Dark background */
+  }
+  
+  .text-white {
+    color: white !important; /* White text color */
+  }
+  

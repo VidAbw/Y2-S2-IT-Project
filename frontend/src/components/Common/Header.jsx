@@ -72,12 +72,32 @@ const Header = () => {
           Foods
         </NavLinkStyled>
         
+        <NavLinkStyled
+          to="/create-feedback"
+          isActive={() => location.pathname === "/create-feedback"}
+        >
+          Feedback
+        </NavLinkStyled>
+        <NavLinkStyled
+          to="/make-complaints"
+          isActive={() => location.pathname === "/make-complaints"}
+        >
+          Make Complaint
+        </NavLinkStyled>
+        
         {/* Reservation link */}
         <NavLinkStyled
           to="/reservations"
           isActive={() => location.pathname === "/reservations"}
         >
           Reservations
+        </NavLinkStyled>
+
+        <NavLinkStyled
+          to="/blogs"
+          isActive={() => location.pathname === "/blogs"}
+        >
+          Blogs
         </NavLinkStyled>
 
         {localStorage.getItem("user") && (
@@ -115,4 +135,4 @@ const Header = () => {
 };
 
 
-export default Header;
+export default Header;
