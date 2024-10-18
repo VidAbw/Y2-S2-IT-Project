@@ -26,9 +26,7 @@ const UpdateReservation = () => {
         const fetchReservation = async () => {
             setLoading(true);
             try {
-
-                const response = await axios.get(`http://localhost:5000/reservations/${id}`);
-
+                const response = await axios.get(`http://localhost:5000/api/v1/reservations/${id}`);
                 const fetchedData = response.data;
 
                 const formattedDate = new Date(fetchedData.reservationDate).toISOString().split('T')[0];
@@ -75,9 +73,7 @@ const UpdateReservation = () => {
         setLoading(true);
         try {
             // Send updated reservation data to the backend (excluding userId)
-
-            const response = await axios.put(`http://localhost:5000/reservations/${id}`, {
-
+            const response = await axios.put(`http://localhost:5000/api/v1/reservations/${id}`, {
                 tableNumber: reservationData.tableNumber,
                 reservationDate: reservationData.reservationDate,
                 startTime: reservationData.startTime,
@@ -92,7 +88,7 @@ const UpdateReservation = () => {
                  
                 setSuccessMessage('Reservation updated successfully!');
                 setTimeout(() => {
-                    navigate('/reservations'); // Redirect after a short delay
+                    navigate('/reservation-list'); // Redirect after a short delay
                     }, 1500); // Wait 2 seconds before navigating
                 
             }

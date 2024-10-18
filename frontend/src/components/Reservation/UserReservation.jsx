@@ -15,8 +15,7 @@ const UserReservation = () => {
     // Fetch the user's reservations from the backend
     const fetchReservations = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/reservations/user/${userId}`);
-
+        const response = await axios.get(`http://localhost:5000/api/v1/reservations/user/${userId}`);
         setReservations(response.data);
       } catch (error) {
         setErrorMessage('Failed to fetch reservations. Please try again.');

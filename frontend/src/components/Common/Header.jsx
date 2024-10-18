@@ -74,8 +74,8 @@ const Header = () => {
         
         {/* Reservation link */}
         <NavLinkStyled
-          to="/reservations"
-          isActive={() => location.pathname === "/reservations"}
+          to="/reservations/create"
+          isActive={() => location.pathname === "/reservations/create"}
         >
           Reservations
         </NavLinkStyled>
