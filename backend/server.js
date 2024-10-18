@@ -4,9 +4,6 @@ const mongoose = require("mongoose");
 
 const rootRouter = require("./root.router");
 
-const employeeRouter = require("./modules/Employee/route");
-
-
 const app = express();
 
 // Middleware
@@ -29,8 +26,6 @@ mongoose
 
 // Use the root router
 app.use("/api/v1", rootRouter);
-app.use("/",employeeRouter);
-
 
 // Start the server
 app.listen(PORT, () => {

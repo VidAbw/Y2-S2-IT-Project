@@ -223,28 +223,15 @@ const ItemManager = () => {
         <Form form={form} layout="vertical">
           <Row gutter={16}>
             <Col span={12}>
-            <Form.Item
-             label="ID"
-             name="id"
-             rules={[
-              { required: true, message: "Please enter the food item ID!" },
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (!value) {
-                return Promise.reject(new Error("Please enter the food item ID!"));
-                }
-                const isDuplicate = foodItems.some(item => item.id === value && item._id !== editingItem?._id);
-                if (isDuplicate) {
-                return Promise.reject(new Error("This ID is already taken!"));
-                }
-                return Promise.resolve();
-              },
-            }),
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
+              <Form.Item
+                label="ID"
+                name="id"
+                rules={[
+                  { required: true, message: "Please enter the food item ID!" },
+                ]}
+              >
+                <Input />
+              </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
@@ -315,23 +302,23 @@ const ItemManager = () => {
             <Col span={12}>
               {!editingItem && (
                 <Form.Item
-                name="imageUrl"
-                label="Image"
-                valuePropName="fileList"
-                getValueFromEvent={(e) => {
-                  // Ensure e is checked correctly for its type
-                  if (Array.isArray(e)) {
-                    return e;
-                  }
-                  return e?.fileList ? [...e.fileList] : []; // Ensure it's returning an array
-                }}
-                rules={[{ required: true, message: "Please upload the file!" }]}
-              >
-                <Upload beforeUpload={() => false} maxCount={1}>
-                  <Button icon={<UploadOutlined />}>Click to upload</Button>
-                </Upload>
-              </Form.Item>
-              
+                  name="imageUrl"
+                  label="Image"
+                  valuePropName="fileList"
+                  getValueFromEvent={(e) => {
+                    if (Array.isArray(e)) {
+                      return e;
+                    }
+                    return e && e.fileList; // Adjust this line if necessary to manage single file upload.
+                  }}
+                  rules={[
+                    { required: true, message: "Please upload the file!" },
+                  ]}
+                >
+                  <Upload beforeUpload={() => false} maxCount={1}>
+                    <Button icon={<UploadOutlined />}>Click to upload</Button>
+                  </Upload>
+                </Form.Item>
               )}
             </Col>
           </Row>

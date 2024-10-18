@@ -18,12 +18,8 @@ import CreateReservation from './components/Reservation/CreateReservation';
 import UserReservation from './components/Reservation/UserReservation';
 import ReservationsList from './components/Reservation/ReservationsList';
 import UpdateReservation from './components/Reservation/UpdateReservation';
-import CreateEmployee from './components/Employee/CreateEmployee';
-import CreateSalary from './components/Employee/CreateSalary';
-import EmployeeList from './components/Employee/EmployeeList';
-import SalaryList from './components/Employee/SalaryList';
-import UpdateEmployee from './components/Employee/UpdateEmployee';
-import UpdateSalary from './components/Employee/UpdateSalary';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Sidebar from "./components/Sidebar.jsx";
 
 
 const Wrapper = styled.div`
@@ -82,18 +78,7 @@ function App() {
           }
         />
         <Route path="/order-manager" element={<OrderManager />} />
-        <Route
-          path="/checkout"
-          element={
-            <Wrapper>
-              <Header />
-              <Content>
-                <CheckoutView />
-              </Content>
-              <Footer />
-            </Wrapper>
-          }
-        />
+        
         <Route
           path="/register"
           element={
@@ -169,30 +154,10 @@ function App() {
         />
 
         {/* Wrapped Reservation Routes */}
-        <Route
-          path="/reservations"
-          element={
-            <Wrapper>
-              <Header />
-              <Content>
-                <ReservationsList />
-              </Content>
-              <Footer />
-            </Wrapper>
-          }
-        />
-        <Route
-          path="/reservations/update/:id"
-          element={
-            <Wrapper>
-              <Header />
-              <Content>
-                <UpdateReservation />
-              </Content>
-              <Footer />
-            </Wrapper>
-          }
-        />
+
+        <Route path="/reservation-list" element={<Sidebar component={ReservationsList} />} />
+        <Route path="/reservations/update/:id" element={<Sidebar component={UpdateReservation} />} />
+        {/* <Route path="/manage-complaints" element={<Sidebar component={ComplaintsList} />} /> */}
         <Route
           path="/user/reservation"
           element={
@@ -217,84 +182,11 @@ function App() {
             </Wrapper>
           }
         />
-        {/* Wrapped Employee Management Routes */}
-        <Route
-          path="/create-employee"
-          element={
-            <Wrapper>
-              <Header />
-              <Content>
-                <CreateEmployee />
-              </Content>
-              <Footer />
-            </Wrapper>
-          }
-        />
-        <Route
-          path="/create-salary"
-          element={
-            <Wrapper>
-              <Header />
-              <Content>
-                <CreateSalary />
-              </Content>
-              <Footer />
-            </Wrapper>
-          }
-        />
-        <Route
-          path="/employee-list"
-          element={
-            <Wrapper>
-              <Header />
-              <Content>
-                <EmployeeList />
-              </Content>
-              <Footer />
-            </Wrapper>
-          }
-        />
-        <Route
-          path="/salary-list"
-          element={
-            <Wrapper>
-              <Header />
-              <Content>
-                <SalaryList />
-              </Content>
-              <Footer />
-            </Wrapper>
-          }
-        />
-        <Route
-          path="/update-employee"
-          element={
-            <Wrapper>
-              <Header />
-              <Content>
-                <UpdateEmployee />
-              </Content>
-              <Footer />
-            </Wrapper>
-          }
-        />
-        <Route
-          path="/update-salary"
-          element={
-            <Wrapper>
-              <Header />
-              <Content>
-                <UpdateSalary />
-              </Content>
-              <Footer />
-            </Wrapper>
-          }
-        />
-
       </Routes>
     </BrowserRouter>
   );
 }
+
 
 
 export default App;

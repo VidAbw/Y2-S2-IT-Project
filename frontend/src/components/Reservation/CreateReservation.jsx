@@ -43,9 +43,7 @@ const CreateReservation = () => {
     setErrorMessage('');
 
     try {
-
-      const response = await axios.post('http://localhost:5000/reservations/check-availability', {
-
+      const response = await axios.post('http://localhost:5000/api/v1/reservations/check-availability', {
         reservationDate,
         startTime,
         endTime,
@@ -69,9 +67,7 @@ const CreateReservation = () => {
 
   const handleReservationSubmit = async () => {
     try {
-
-      const response = await axios.post('http://localhost:5000/reservations', {
-
+      const response = await axios.post('http://localhost:5000/api/v1/reservations', {
         userId,
         tableNumber: selectedTable,
         reservationDate,
