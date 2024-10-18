@@ -1,0 +1,15 @@
+.reservations-background {
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .reservations-container {
+    background-color: rgba(255, 255, 255, 0.75); /* 75% opacity white background */
+    border-radius: 15px;
+   /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+  }
+  

@@ -1,32 +1,35 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const cors = require("cors");
-const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+
+const rootRouter = require("./root.router");
+const employeeRouter = require("./modules/Employee/route");
+
 const app = express();
-require("dotenv").config();
 
-const PORT = process.env.PORT || 8070;
-app.use(cors());
-app.use(bodyParser.json());
-const URL = process.env.MONGODB_URL;
+// Middleware
+app.use(cors()); // Enable CORS
+app.use(express.json()); // Parse incoming JSON requests
 
-mongoose.connect(URL, {
-});
+// Connect to MongoDB
+const PORT = 5000;
+const MONGODB_URI =
+  "mongodb+srv://dutheesh:2824981@cluster0.wl3q4dm.mongodb.net/ITP?retryWrites=true&w=majority&appName=Cluster0";
 
-const connection = mongoose.connection;
-connection.once("open", () => {
-  console.log("MongoDB connection Success!");
-});
+mongoose
+  .connect(MONGODB_URI)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((error) => {
+    console.error("Error connecting to MongoDB:", error.message);
+  });
 
-const employeeRouter= require("./routes/employee.routes");
-app.use("/employees",employeeRouter);
+// Use the root router
+app.use("/api/v1", rootRouter);
+app.use("/",employeeRouter);
 
-
-const salaryRouter= require("./routes/salary.routes");
-app.use("/salaries",salaryRouter);
-
-
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
